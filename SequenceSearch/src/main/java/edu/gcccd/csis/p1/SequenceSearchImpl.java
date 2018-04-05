@@ -17,34 +17,30 @@ public class SequenceSearchImpl extends SequenceSearch {
     @Override
     public String[] getAllTaggedSequences() {
 
-        int fromIndex = -startTag.length();
-        int toIndex = -endTag.length();
+        int fromIndex = 0;
+        int toIndex = content.lastIndexOf(endTag); // start at the last tag
         String[] taggedStrings = {};
 
-        while( -1 != (fromIndex = content.indexOf(startTag, fromIndex + startTag.length()))) {
-            toIndex =  content.indexOf(endTag, fromIndex + startTag.length());
-            if(toIndex == -1) {
-                break;
-            }
-            if (content.substring(fromIndex + startTag.length(), toIndex).contains(startTag))
-                fromIndex = content.lastIndexOf(startTag , toIndex);
-
-            taggedStrings = adds(taggedStrings, content.substring(fromIndex + startTag.length(), toIndex));
-
-        } if(startTag.equals(endTag) && (taggedStrings.length%2 ==0)) {
-                String[] evenTags = new String[(taggedStrings.length / 2)];
-                for (int i = 0; i <= evenTags.length; i++) {
-                    evenTags[i] = taggedStrings[i * 2];
-
+        do {
+                if (0 <= (fromIndex = content.lastIndexOf(startTag, toIndex - endTag.length()))) {
+                    // if the tags aren't in the correct format
+                    if(content.substring(fromIndex + startTag.length(), toIndex).contains(endTag)) {
+                        toIndex = content.indexOf(endTag, fromIndex + startTag.length());
+                        taggedStrings = adds(taggedStrings, content.substring(fromIndex + startTag.length(), toIndex));
+                    }else{
+                        taggedStrings = adds(taggedStrings, content.substring(fromIndex + startTag.length(), toIndex));
+                    }
                 }
-            return evenTags;
+                toIndex = content.lastIndexOf(endTag, fromIndex - startTag.length());
 
-        }else if(startTag.equals(endTag) && (taggedStrings.length%2 != 0)){
-            String[] oddTags = new String[(taggedStrings.length/2)+1];
-            for (int i = 0; i < oddTags.length; i++) {
-                oddTags[i] = taggedStrings[i * 2];
-            }
-            return oddTags;
+        }while (-1 != toIndex);
+
+        // reverse taggedStrings
+        for ( int i = 0; i < taggedStrings.length/2; i++){
+            String temp = taggedStrings[i];
+            taggedStrings[i] = taggedStrings[taggedStrings.length-1-i];
+            taggedStrings[taggedStrings.length-1-i] = temp;
+
         }
 
         return taggedStrings;
