@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SelfAware.iml" filepath="$PROJECT_DIR$/.idea/modules/SelfAware.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SelfAware_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SelfAware_main.iml" group="SelfAware" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SelfAware_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SelfAware_test.iml" group="SelfAware" />
+    </modules>
+  </component>
+</project>
