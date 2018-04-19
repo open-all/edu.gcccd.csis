@@ -1,7 +1,6 @@
 package edu.gcccd.csis;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.*;
 
 
@@ -31,6 +30,7 @@ public class SelfAware implements Language{
         int occurences = 0;
         Path p = Paths.get(sourceFile);
         String fileAsString = new String(Files.readAllBytes(p));
+
         // split file at all occurences of non word characters
         String[] words = fileAsString.split("\\W+");
         for(int i = 0; i < words.length; i++){
@@ -40,7 +40,6 @@ public class SelfAware implements Language{
                 occurences++;
             }
         }
-
         return occurences;
     }
 
