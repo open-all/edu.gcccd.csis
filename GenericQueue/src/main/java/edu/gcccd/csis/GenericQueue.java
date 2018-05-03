@@ -41,12 +41,12 @@ public class GenericQueue<T> {
         }
 
 
-        // insert item at end of list
+        // insert item at front of list
         public void insert(T insertItem){
             if (isEmpty()) // firstNode and lastNode refer to same object
                 firstNode = lastNode = new Node<T>(insertItem);
             else // lastNode's nextNode refers to new node
-                lastNode.nextNode = new Node<T>(insertItem);
+                firstNode = new Node<T>(insertItem, firstNode);
             size++;
         }
 
