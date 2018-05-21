@@ -1,5 +1,6 @@
 package edu.gcccd.csis;
 
+import java.io.*;
 import java.util.Iterator;
 
 public class MyProject2 implements Project2 {
@@ -45,17 +46,45 @@ public class MyProject2 implements Project2 {
         }
 
 
+
         return resultOfLists;
     }
 
     @Override
     public void save(NodeList<Integer> nodeList, String fileName) {
 
+        try {
+            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(fileName));
+
+            for(Integer integer : nodeList){
+
+                outputStream.write(integer);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public NodeList<Integer> load(String fileName) {
-        return null;
+
+        NodeList<Integer> list = new NodeList<>();
+
+        try {
+            BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(fileName));
+
+            while (0 < inputStream.available()){
+
+                list.append(inputStream.read());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioexception ) {
+            ioexception.printStackTrace();
+        }
+
+        return list;
     }
 
 
@@ -91,8 +120,8 @@ public class MyProject2 implements Project2 {
         for (int i = 0; i < L; i++) {
             listOfLists.append(Project2.generateNumber(L));
         }
-        //p.save(p.addition(listOfLists.iterator()), "result.bin");
-        //Project2.print(p.load("result.bin"));
+        p.save(p.addition(listOfLists.iterator()), "result.bin");
+        Project2.print(p.load("result.bin"));
     }
 
 }
