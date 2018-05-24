@@ -1,6 +1,7 @@
 package edu.gcccd.csis;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.Iterator;
 
 public class MyProject2 implements Project2 {
@@ -87,7 +88,7 @@ public class MyProject2 implements Project2 {
         return list;
     }
 
-
+    // reverses a specified NodeList
     public NodeList<Integer> reverse(Iterator<Integer> iter)
     {
         NodeList<Integer> nl;
@@ -101,6 +102,19 @@ public class MyProject2 implements Project2 {
             nl = new NodeList<>();
         return nl;
     }
+
+    //converts a Nodelist to a string
+    public BigInteger listAsBigInt(NodeList<Integer> nl)
+    {
+        Iterator<Integer> iter = nl.iterator();
+        String str = "";
+        while (iter.hasNext())
+        {
+            str += iter.next();
+        }
+        return new BigInteger(str);
+    }
+
 
 
     public static void main(final String[] args) {
