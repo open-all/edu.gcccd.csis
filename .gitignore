@@ -1,4 +1,6 @@
-.gradle
+*.DS_Store
+/venv/
+/.gradle/
 /build/
 
 # Ignore Gradle GUI config
