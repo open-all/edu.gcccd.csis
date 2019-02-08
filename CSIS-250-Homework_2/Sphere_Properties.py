@@ -7,7 +7,7 @@ Last date modified: 2/7/19
 
 When given a valid value for a radius, the purpose of this program is to compute the diameter, circumference,
 surface area, and volume of a sphere. It uses the absolute value of the input to ensure it can also handle negative
-numbers. It also use a try catch statement to handle unexpected inputs such as strings
+numbers. It also uses a try catch statement to handle unexpected inputs such as strings
 """
 
 from math import pi
