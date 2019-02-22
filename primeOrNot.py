@@ -11,9 +11,9 @@ class primeOrNot:
 
 #primality test of any int n
     def primeOrNot(n):
-        n = abs(int(n))
+        n = int(n)
         if n < 2:
-            result = "not prime"
+            return = "not prime"
         elif n != 2 and n % 2 == 0:
             return "not prime"
         elif( all(n % i for i in range(3, int(n**0.5)+1))):
