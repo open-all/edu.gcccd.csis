@@ -3,7 +3,7 @@ Program to calculate pi using random probability
 
 Program: MonteCarlo.py
 Author: Elias McCoy
-Last date modified: 2/7/19
+Last date modified: 2/27/19
 
 The program simulates drops inside and outside of a cirlce and approxiamtes the curviture of that cirlce to calculate pi
 """
