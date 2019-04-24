@@ -18,13 +18,13 @@ class Poem:
         return self.text
 
     def getType(self):
-        return self.haikumPoem
+        return self.haikuPoem
         
     def setText(self, *text):
         self.text = list(text)
         
     def setType(self, haikuPoem):
-        self.haikumPoem = haikuPoem
+        self.haikuPoem = haikuPoem
         
 def main():
     AnaisNin = Poem("Anais Nin","Risk")
