@@ -28,7 +28,7 @@ class Route:
     def avg_temp(self):
         temp = 0
         for t in range(len(self.cities)):
-            temp = self.cities[t].get_temperature(t)
+            temp += self.cities[t].get_temperature(t)
         temp /= len(self.cities)
         return temp
 
