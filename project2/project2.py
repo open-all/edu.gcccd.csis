@@ -15,10 +15,12 @@ class City:
         return self.temps[day]
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Route:
+    cities: object
+
     def __init__(self, city_list ):
         # assuming city_list is a list containing object of the City class
         self.cities = city_list
@@ -31,8 +33,11 @@ class Route:
         return temp
 
     def __str__(self):
-        return self.name
+        return " ".join(str(city) for city in self.cities)
     #todo maybe use join to create a nice string contaning the route eg. city1 : city2 : ..
+
+    def __len__(self):
+        return len(self.cities)
 
 def fetch_weather(id):
     # request parameter(s): Start with '?'
@@ -55,6 +60,22 @@ def fetch_weather(id):
         print("How should I know?")
         return None
 
+def best_route():
+    #find the best route of all possible routes
+    best_route = Route(cities)
+    while p:
+        temp_route = []
+        # test the current permutation
+        r = p.pop()
+        for i in range(len(cities)):
+            #append the current permutation the temp_route
+            temp_route.append(cities[r[i]])
+        #create route object to test if it is the best possible route
+        potential_best = Route(temp_route)
+        if potential_best.avg_temp() < best_route.avg_temp():
+            best_route = potential_best
+
+    return best_route
 
 if __name__ == "__main__":
 
@@ -66,13 +87,11 @@ if __name__ == "__main__":
     cities = []
     for id in id_list:
         cities.append(fetch_weather(id))
-    avg_temp = 0
-    p = list(permutations(id_list))
-    print(p)
-    for id_list in range(len(cities)):
-        city = cities[i]
-        print(city)
-        avg_temp += city.get_temperature(i)
-    avg_temp /= len(cities)
-    print(avg_temp)
 
+    p = list(permutations(range(5)))
+    best = best_route().cities
+    best_path = Route(best)
+    print("hi")
+    print(best_path)
+
+    # loop to find the average for one specific route
