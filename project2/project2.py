@@ -28,7 +28,7 @@ class Route:
     def avg_temp(self):
         temp = 0
         for t in range(len(self.cities)):
-            temp += self.cities[t].get_temperature(t)
+            temp = self.cities[t].get_temperature(t)
         temp /= len(self.cities)
         return temp
 
@@ -91,7 +91,6 @@ if __name__ == "__main__":
     p = list(permutations(range(5)))
     best = best_route().cities
     best_path = Route(best)
-    print("hi")
     print(best_path)
 
     # loop to find the average for one specific route
