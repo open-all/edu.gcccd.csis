@@ -33,7 +33,7 @@ class Route:
         return temp
 
     def __str__(self):
-        return " ".join(str(city) for city in self.cities)
+        return " ".join(str("city: " + str(city)) for city in self.cities)
     #todo maybe use join to create a nice string contaning the route eg. city1 : city2 : ..
 
     def __len__(self):
@@ -63,10 +63,10 @@ def fetch_weather(id):
 def best_route():
     #find the best route of all possible routes
     best_route = Route(cities)
-    while p:
+    while permutions_as_tuples:
         temp_route = []
         # test the current permutation
-        r = p.pop()
+        r = permutions_as_tuples.pop()
         for i in range(len(cities)):
             #append the current permutation the temp_route
             temp_route.append(cities[r[i]])
@@ -74,7 +74,6 @@ def best_route():
         potential_best = Route(temp_route)
         if potential_best.avg_temp() < best_route.avg_temp():
             best_route = potential_best
-
     return best_route
 
 if __name__ == "__main__":
@@ -88,9 +87,7 @@ if __name__ == "__main__":
     for id in id_list:
         cities.append(fetch_weather(id))
 
-    p = list(permutations(range(5)))
+    permutions_as_tuples = list(permutations(range(5)))
     best = best_route().cities
     best_path = Route(best)
-    print(best_path)
-
-    # loop to find the average for one specific route
+    print(best_path.__str__() + " the average route temperature is {0:.2f} degrees fahrenheit".format(best_path.avg_temp()))
